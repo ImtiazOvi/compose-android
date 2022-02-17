@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
@@ -26,6 +28,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
+
+    data class User(val id: Int)
+
+   private val users = listOf(
+        User(1),
+        User(2),
+        User(3),
+        User(4),
+        User(5),
+        User(6),
+        User(7),
+        User(8),
+        User(9)
+    )
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,9 +53,15 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun UserList(){
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            for (i in 1..10){
+    fun UserList() {
+//        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+//            for (i in 1..10){
+//                UserCard()
+//            }
+//        }
+
+        LazyColumn {
+            items((users)) { user ->
                 UserCard()
             }
         }
