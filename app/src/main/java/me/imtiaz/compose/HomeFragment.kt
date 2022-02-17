@@ -1,7 +1,9 @@
 package me.imtiaz.compose
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -24,10 +26,13 @@ import androidx.fragment.app.Fragment
 
 class HomeFragment: Fragment(R.layout.home_fragment) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.findViewById<ComposeView>(R.id.compose_view).setContent {
-            UserCard()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return ComposeView(requireContext()).apply {
+            setContent { UserCard() }
         }
     }
 
