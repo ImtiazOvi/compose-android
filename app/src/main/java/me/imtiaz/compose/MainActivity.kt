@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,15 +29,33 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UserCard()
+            UserList()
         }
 
     }
 
     @Composable
-    fun UserCard() {
-       // Title()
+    fun UserList(){
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            for (i in 1..10){
+                UserCard()
+            }
+        }
+    }
 
+    @Composable
+    fun UserCard() {
+        // Title()
+
+        Card(
+            elevation = 4.dp,
+            modifier = Modifier
+                .padding(12.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+        ) {
+
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
